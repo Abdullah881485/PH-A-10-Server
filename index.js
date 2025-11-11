@@ -73,6 +73,12 @@ async function run() {
             const result = await transactionsCollection.updateOne(query, update)
             res.send(result)
         })
+        app.delete("/myTransaction/:id", async (req, res) => {
+            const id = req.params.id
+            const query = { _id: new ObjectId(id) }
+            const result = await transactionsCollection.deleteOne(query)
+            res.send(result)
+        })
 
 
         await client.db("admin").command({ ping: 1 });
