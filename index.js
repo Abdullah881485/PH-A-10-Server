@@ -63,16 +63,7 @@ async function run() {
             const result = await transactionsCollection.find(query).toArray()
             res.send(result)
         })
-        app.patch("/updateTransaction/:id", async (req, res) => {
-            const id = req.params.id
-            const query = { _id: new ObjectId(id) }
-            const updatedTransaction = req.body
-            const update = {
-                $set: updatedTransaction
-            }
-            const result = await transactionsCollection.updateOne(query, update)
-            res.send(result)
-        })
+        
         app.delete("/myTransaction/:id", async (req, res) => {
             const id = req.params.id
             const query = { _id: new ObjectId(id) }
