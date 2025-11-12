@@ -47,7 +47,12 @@ async function run() {
             res.send(result);
         });
 
-        
+        app.get("/transactionDetails/:id", async (req, res) => {
+            const id = req.params.id
+            const query = { _id: new ObjectId(id) }
+            const result = await transactionsCollection.findOne(query)
+            res.send(result)
+        })
         app.get("/myTransaction/:category", async (req, res) => {
             const email = req.query.email;
             const category = req.params.category
