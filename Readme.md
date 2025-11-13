@@ -8,7 +8,7 @@ It handles secure API routes, manages data with MongoDB, and connects the fronte
 
 ## 🌐 Live API / Server URL
 
-🔗 **Server Live:** [https://ph-a-10-server.vercel.app](https://ph-a-10-server.vercel.app)
+🔗 **Server Live:** https://ph-a-10-server.vercel.app
 
 ---
 
