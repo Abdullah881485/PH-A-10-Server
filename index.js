@@ -22,7 +22,7 @@ admin.initializeApp({
 app.use(cors())
 app.use(express.json())
 
-const verifyFirebaseToken = (req, res, next) => {
+const verifyFirebaseToken = async (req, res, next) => {
     const authorization = req.headers.authorization
     if (!authorization) {
         return res.status(401).send({ message: 'Unauthorized access' })
@@ -35,7 +35,7 @@ const verifyFirebaseToken = (req, res, next) => {
 
 
     try {
-        const decoded = admin.auth().verifyIdToken(token)
+        const decoded = await admin.auth().verifyIdToken(token)
         req.token_email = decoded.email;
         next()
     } catch {
