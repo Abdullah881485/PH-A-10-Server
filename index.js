@@ -69,11 +69,14 @@ async function run() {
             const result = await transactionsCollection.insertOne(newTransaction)
             res.send(result)
         })
-        app.get("/myTransaction", async (req, res) => {
+        app.get("/myTransaction", verifyFirebaseToken, async (req, res) => {
             const email = req.query.email;
             const query = {}
             if (email) {
                 query.email = email
+                if (req.token_email !== email) {
+                    return res.status(403).send({ message: 'Forbidden access' })
+                }
             }
             const cursor = transactionsCollection.find(query).sort({ date: -1, amount: -1 });
             const result = await cursor.toArray();
